@@ -1,0 +1,227 @@
+You are given an integer T (number of test cases). You are given array A and an integer B for each test case. You have to tell whether B is present in array A or not.Problem Constraints
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int T = scanner.nextInt(); // Number of test cases
+
+        for (int t = 0; t < T; t++) {
+            int A_length = scanner.nextInt();
+            int[] A = new int[A_length];
+
+            // Read array elements
+            for (int i = 0; i < A_length; i++) {
+                A[i] = scanner.nextInt();
+            }
+
+            int B = scanner.nextInt(); // Element to search for
+
+            // Check if B is present in A
+            int result = 0;
+            for (int i = 0; i < A_length; i++) {
+                if (A[i] == B) {
+                    result = 1;
+                    break;
+                }
+            }
+
+            System.out.println(result);
+        }
+    }
+}
+------------------------------------------------------------------------------------------------------------
+You are given an integer array A. You have to find the second largest element/value in the array or report that no such element exists.
+
+
+public int findSecondLargest(int[] A) {
+    if (A == null || A.length < 2) {
+        return -1; // Not enough elements to have a second largest
+    }
+
+    int firstLargest = Integer.MIN_VALUE; // Initialize to smallest possible value
+    int secondLargest = Integer.MIN_VALUE;
+
+    for (int num : A) {
+        if (num > firstLargest) {
+            secondLargest = firstLargest;
+            firstLargest = num;
+        } else if (num > secondLargest && num != firstLargest) {
+            secondLargest = num;
+        }
+    }
+
+    if (secondLargest == Integer.MIN_VALUE) {
+        return -1; // No second largest element found
+    }
+
+    return secondLargest;
+}
+------------------------------------------------------------------------------------------------------------
+
+You are given an array of integers A of size N.Return the difference between the maximum among all even numbers of A and the minimum among all odd numbers in A.
+
+
+
+public class Solution {
+    public int findDifference(int[] A) {
+        int maxEven = Integer.MIN_VALUE;
+        int minOdd = Integer.MAX_VALUE;
+
+        for (int num : A) {
+            if (num % 2 == 0 && num > maxEven) {
+                maxEven = num;
+            } else if (num % 2 != 0 && num < minOdd) {
+                minOdd = num;
+            }
+        }
+
+        return maxEven - minOdd;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        int[] A1 = {0, 2, 9};
+        int result1 = solution.findDifference(A1); // Result: -7
+        System.out.println(result1);
+
+        int[] A2 = {5, 17, 100, 1};
+        int result2 = solution.findDifference(A2); // Result: 99
+        System.out.println(result2);
+
+        // You can add and test more test cases as described in the problem statement.
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+You are given an integer T denoting the number of test cases. For each test case, you are given an integer array A.
+
+You have to print the odd and even elements of array A in 2 separate lines.
+
+NOTE: Array elements should have the same relative order as in A.
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int T = scanner.nextInt(); // Number of test cases
+
+        for (int t = 0; t < T; t++) {
+            int n = scanner.nextInt(); // Length of the array
+            int[] A = new int[n];
+
+            // Read array elements
+            for (int i = 0; i < n; i++) {
+                A[i] = scanner.nextInt();
+            }
+
+            ArrayList<Integer> oddElements = new ArrayList<>();
+            ArrayList<Integer> evenElements = new ArrayList<>();
+
+            for (int num : A) {
+                if (num % 2 == 0) {
+                    evenElements.add(num);
+                } else {
+                    oddElements.add(num);
+                }
+            }
+
+            // Print odd elements
+            for (int odd : oddElements) {
+                System.out.print(odd + " ");
+            }
+            System.out.println();
+
+            // Print even elements
+            for (int even : evenElements) {
+                System.out.print(even + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------
+Given an integer array A of size N and an integer B, you have to print the same array after rotating it B times towards the right.
+
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt(); // Size of the array A
+        int[] A = new int[N];
+
+        // Read array elements
+        for (int i = 0; i < N; i++) {
+            A[i] = scanner.nextInt();
+        }
+
+        int B = scanner.nextInt(); // Number of right rotations
+
+        // Calculate the effective number of rotations (to avoid unnecessary rotations)
+        B = B % N;
+
+        // Create a new array to store the rotated elements
+        int[] rotatedArray = new int[N];
+
+        // Copy the second part (from index N - B to N - 1) to the start of rotatedArray
+        System.arraycopy(A, N - B, rotatedArray, 0, B);
+
+        // Copy the first part (from index 0 to N - B - 1) to the end of rotatedArray
+        System.arraycopy(A, 0, rotatedArray, B, N - B);
+
+        // Print the rotated array
+        for (int i = 0; i < N; i++) {
+            System.out.print(rotatedArray[i] + " ");
+        }
+        System.out.println();
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Given an array A and an integer B. A pair(i, j) in the array is a good pair if i != j and (A[i] + A[j] == B). Check if any good pair exist or not.
+
+
+
+import java.util.HashSet;
+
+public class Solution {
+    public int hasGoodPair(int[] A, int B) {
+        HashSet<Integer> seen = new HashSet<>();
+        
+        for (int num : A) {
+            if (seen.contains(B - num)) {
+                return 1; // Found a good pair
+            }
+            seen.add(num);
+        }
+        
+        return 0; // No good pair found
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        int[] A1 = {1, 2, 3, 4};
+        int B1 = 7;
+        int result1 = solution.hasGoodPair(A1, B1); // Result: 1
+        System.out.println(result1);
+
+        int[] A2 = {1, 2, 4};
+        int B2 = 4;
+        int result2 = solution.hasGoodPair(A2, B2); // Result: 0
+        System.out.println(result2);
+
+        int[] A3 = {1, 2, 2};
+        int B3 = 4;
+        int result3 = solution.hasGoodPair(A3, B3); // Result: 1
+        System.out.println(result3);
+    }
+}
