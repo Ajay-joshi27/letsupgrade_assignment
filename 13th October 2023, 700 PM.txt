@@ -5,20 +5,20 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int T = scanner.nextInt(); // Number of test cases
+        int T = scanner.nextInt(); 
 
         for (int t = 0; t < T; t++) {
             int A_length = scanner.nextInt();
             int[] A = new int[A_length];
 
-            // Read array elements
+            
             for (int i = 0; i < A_length; i++) {
                 A[i] = scanner.nextInt();
             }
 
-            int B = scanner.nextInt(); // Element to search for
+            int B = scanner.nextInt(); 
 
-            // Check if B is present in A
+            
             int result = 0;
             for (int i = 0; i < A_length; i++) {
                 if (A[i] == B) {
@@ -37,10 +37,10 @@ You are given an integer array A. You have to find the second largest element/va
 
 public int findSecondLargest(int[] A) {
     if (A == null || A.length < 2) {
-        return -1; // Not enough elements to have a second largest
+        return -1; 
     }
 
-    int firstLargest = Integer.MIN_VALUE; // Initialize to smallest possible value
+    int firstLargest = Integer.MIN_VALUE; 
     int secondLargest = Integer.MIN_VALUE;
 
     for (int num : A) {
@@ -53,7 +53,7 @@ public int findSecondLargest(int[] A) {
     }
 
     if (secondLargest == Integer.MIN_VALUE) {
-        return -1; // No second largest element found
+        return -1; 
     }
 
     return secondLargest;
@@ -84,14 +84,14 @@ public class Solution {
         Solution solution = new Solution();
 
         int[] A1 = {0, 2, 9};
-        int result1 = solution.findDifference(A1); // Result: -7
+        int result1 = solution.findDifference(A1);
         System.out.println(result1);
 
         int[] A2 = {5, 17, 100, 1};
-        int result2 = solution.findDifference(A2); // Result: 99
+        int result2 = solution.findDifference(A2); 
         System.out.println(result2);
 
-        // You can add and test more test cases as described in the problem statement.
+        
     }
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -103,19 +103,20 @@ You have to print the odd and even elements of array A in 2 separate lines.
 NOTE: Array elements should have the same relative order as in A.
 
 
+ans ---
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int T = scanner.nextInt(); // Number of test cases
+        int T = scanner.nextInt(); 
 
         for (int t = 0; t < T; t++) {
-            int n = scanner.nextInt(); // Length of the array
+            int n = scanner.nextInt(); 
             int[] A = new int[n];
 
-            // Read array elements
+           
             for (int i = 0; i < n; i++) {
                 A[i] = scanner.nextInt();
             }
@@ -131,13 +132,13 @@ public class Main {
                 }
             }
 
-            // Print odd elements
+           
             for (int odd : oddElements) {
                 System.out.print(odd + " ");
             }
             System.out.println();
 
-            // Print even elements
+           
             for (int even : evenElements) {
                 System.out.print(even + " ");
             }
@@ -155,29 +156,29 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt(); // Size of the array A
+        int N = scanner.nextInt(); 
         int[] A = new int[N];
 
-        // Read array elements
+        
         for (int i = 0; i < N; i++) {
             A[i] = scanner.nextInt();
         }
 
-        int B = scanner.nextInt(); // Number of right rotations
+        int B = scanner.nextInt(); 
 
-        // Calculate the effective number of rotations (to avoid unnecessary rotations)
+       
         B = B % N;
 
-        // Create a new array to store the rotated elements
+       
         int[] rotatedArray = new int[N];
 
-        // Copy the second part (from index N - B to N - 1) to the start of rotatedArray
+       
         System.arraycopy(A, N - B, rotatedArray, 0, B);
 
-        // Copy the first part (from index 0 to N - B - 1) to the end of rotatedArray
+       
         System.arraycopy(A, 0, rotatedArray, B, N - B);
 
-        // Print the rotated array
+      
         for (int i = 0; i < N; i++) {
             System.out.print(rotatedArray[i] + " ");
         }
@@ -198,7 +199,7 @@ public class Solution {
         
         for (int num : A) {
             if (seen.contains(B - num)) {
-                return 1; // Found a good pair
+                return 1;
             }
             seen.add(num);
         }
@@ -211,12 +212,12 @@ public class Solution {
 
         int[] A1 = {1, 2, 3, 4};
         int B1 = 7;
-        int result1 = solution.hasGoodPair(A1, B1); // Result: 1
+        int result1 = solution.hasGoodPair(A1, B1);
         System.out.println(result1);
 
         int[] A2 = {1, 2, 4};
         int B2 = 4;
-        int result2 = solution.hasGoodPair(A2, B2); // Result: 0
+        int result2 = solution.hasGoodPair(A2, B2); 
         System.out.println(result2);
 
         int[] A3 = {1, 2, 2};
